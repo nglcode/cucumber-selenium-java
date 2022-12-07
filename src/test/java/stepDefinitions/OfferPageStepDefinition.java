@@ -29,7 +29,7 @@ public class OfferPageStepDefinition {
 	@Then("user searched for {string} shortname in offers page")
 	public void user_searched_for_the_same_shortname_in_offers_page_to_check_if_product_exists(String shortname) throws InterruptedException {
 		switchToOffersPage();
-		OffersPage offersPage = new OffersPage(testContextSetup.driver);
+		OffersPage offersPage = testContextSetup.pageObjectManager.getOffersPage();
 		offersPage.searchItem(shortname);
 		offerPageProductName = offersPage.getProductName();
 		System.out.println(offerPageProductName + " was extracted - offerPageProductName");
@@ -46,15 +46,9 @@ public class OfferPageStepDefinition {
 	}
 	
 	public void switchToOffersPage() {
-		if (!testContextSetup.driver.getCurrentUrl().equals("https://rahulshettyacademy.com/seleniumPractise/#/offers")) {
-			LandingPage landingPage = new LandingPage(testContextSetup.driver);
+			LandingPage landingPage = testContextSetup.pageObjectManager.getLandingPage();
 			landingPage.selectTopDeals();
-			Set<String> windowHandles = testContextSetup.driver.getWindowHandles();
-			Iterator<String> iterator = windowHandles.iterator();
-			String parentWindow = iterator.next();
-			String childWindow = iterator.next();
-			testContextSetup.driver.switchTo().window(childWindow);
-		}
+			testContextSetup.genericUtils.switchWindowToChild();
 	}
 
 }
