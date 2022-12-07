@@ -6,7 +6,7 @@ import pageObjects.PageObjectManager;
 
 public class TestContextSetup {
 
-	public WebDriver driver;
+//	public WebDriver driver;
 	public String landingPageProductName;
 	public PageObjectManager pageObjectManager;
 	public TestBase testBase;

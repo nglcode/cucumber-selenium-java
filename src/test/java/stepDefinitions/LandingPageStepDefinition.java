@@ -33,7 +33,7 @@ public class LandingPageStepDefinition {
 	}
 	
 	public void waitSecs(int secs) {
-		testContextSetup.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(secs));
+		testContextSetup.testBase.WebDriverManager().manage().timeouts().implicitlyWait(Duration.ofSeconds(secs));
 	}
 
 }
