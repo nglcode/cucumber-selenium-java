@@ -12,6 +12,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import junit.framework.Assert;
+import pageObjects.LandingPage;
+import pageObjects.OffersPage;
 import utils.TestContextSetup;
 
 public class OfferPageStepDefinition {
@@ -26,14 +28,10 @@ public class OfferPageStepDefinition {
 
 	@Then("user searched for {string} shortname in offers page")
 	public void user_searched_for_the_same_shortname_in_offers_page_to_check_if_product_exists(String shortname) throws InterruptedException {
-		testContextSetup.driver.findElement(By.xpath("//a[@href='#/offers']")).click();
-		Set<String> windowHandles = testContextSetup.driver.getWindowHandles();
-		Iterator<String> iterator = windowHandles.iterator();
-		String parentWindow = iterator.next();
-		String childWindow = iterator.next();
-		testContextSetup.driver.switchTo().window(childWindow);
-		testContextSetup.driver.findElement(By.id("search-field")).sendKeys(shortname);
-		offerPageProductName = testContextSetup.driver.findElement(By.cssSelector("tr td:nth-child(1)")).getText();
+		switchToOffersPage();
+		OffersPage offersPage = new OffersPage(testContextSetup.driver);
+		offersPage.searchItem(shortname);
+		offerPageProductName = offersPage.getProductName();
 		System.out.println(offerPageProductName + " was extracted - offerPageProductName");
 		Thread.sleep(2000);
 	}
@@ -45,6 +43,18 @@ public class OfferPageStepDefinition {
 	
 	public void waitSecs(int secs) {
 		testContextSetup.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(secs));
+	}
+	
+	public void switchToOffersPage() {
+		if (!testContextSetup.driver.getCurrentUrl().equals("https://rahulshettyacademy.com/seleniumPractise/#/offers")) {
+			LandingPage landingPage = new LandingPage(testContextSetup.driver);
+			landingPage.selectTopDeals();
+			Set<String> windowHandles = testContextSetup.driver.getWindowHandles();
+			Iterator<String> iterator = windowHandles.iterator();
+			String parentWindow = iterator.next();
+			String childWindow = iterator.next();
+			testContextSetup.driver.switchTo().window(childWindow);
+		}
 	}
 
 }
