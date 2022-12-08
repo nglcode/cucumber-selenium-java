@@ -13,7 +13,7 @@ public class Hooks {
 
 	@After
 	public void AfterScenario() {
-		testContextSetup.testBase.WebDriverManager().quit();
+//		testContextSetup.testBase.WebDriverManager().quit();
 	}
 
 }
