@@ -28,13 +28,9 @@ public class CheckoutPageStepDefinition {
 	
 	@Then("validate apply and place order buttons are displayed")
 	public void validate_apply_and_place_order_buttons_are_displayed() {
-		waitSecs(3);
 	    Assert.assertTrue(checkoutPage.getApplyButton().isDisplayed());
 	    Assert.assertTrue(checkoutPage.getPlaceOrderButton().isDisplayed());
 	}
 	
-	public void waitSecs(int secs) {
-		testContextSetup.testBase.WebDriverManager().manage().timeouts().implicitlyWait(Duration.ofSeconds(secs));
-	}
 
 }

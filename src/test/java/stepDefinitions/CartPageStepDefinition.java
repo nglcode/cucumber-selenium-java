@@ -25,9 +25,5 @@ public class CartPageStepDefinition {
 	    cartPage.clickCartIcon();
 	    cartPage.clickCheckout();
 	}
-	
-	public void waitSecs(int secs) {
-		testContextSetup.testBase.WebDriverManager().manage().timeouts().implicitlyWait(Duration.ofSeconds(secs));
-	}
 
 }

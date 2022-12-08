@@ -37,9 +37,5 @@ public class LandingPageStepDefinition {
 		landingPage.clickIncrementButton(quantity);
 		landingPage.clickAddToCartButton();
 	}
-	
-	public void waitSecs(int secs) {
-		testContextSetup.testBase.WebDriverManager().manage().timeouts().implicitlyWait(Duration.ofSeconds(secs));
-	}
 
 }

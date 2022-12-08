@@ -41,10 +41,6 @@ public class OfferPageStepDefinition {
 		Assert.assertEquals(offerPageProductName, testContextSetup.landingPageProductName);
 	}
 	
-	public void waitSecs(int secs) {
-		testContextSetup.testBase.WebDriverManager().manage().timeouts().implicitlyWait(Duration.ofSeconds(secs));
-	}
-	
 	public void switchToOffersPage() {
 			LandingPage landingPage = testContextSetup.pageObjectManager.getLandingPage();
 			landingPage.selectTopDeals();
