@@ -34,7 +34,7 @@ public class LandingPageStepDefinition {
 	
 	@When("^user adds (.+) items of (.+) to the cart$")
 	public void user_adds_items_of_tom_to_the_cart(Integer quantity, String shortname) {
-		IntStream.rangeClosed(1, quantity).forEach(i -> landingPage.clickIncrementButton());
+		landingPage.clickIncrementButton(quantity);
 		landingPage.clickAddToCartButton();
 	}
 	

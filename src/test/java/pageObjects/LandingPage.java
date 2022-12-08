@@ -1,5 +1,7 @@
 package pageObjects;
 
+import java.util.stream.IntStream;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -33,8 +35,8 @@ public class LandingPage {
 		driver.findElement(topDeals).click();
 	}
 	
-	public void clickIncrementButton() {
-		driver.findElement(incrementButton).click();
+	public void clickIncrementButton(int quantity) {
+		IntStream.rangeClosed(1, quantity).forEach(i -> driver.findElement(incrementButton).click());
 	}
 	
 	public void clickAddToCartButton() {
