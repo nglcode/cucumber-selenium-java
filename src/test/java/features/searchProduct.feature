@@ -2,7 +2,7 @@
 Feature: Search and Place the order for products
   This is just a description
 
-  @tag1
+  @OffersPage
   Scenario Outline: Search Experience for product search in both home and offers page
     Given user is on GreenCard landing page
     When user searched with shortname <Name> and extracted actual name of product

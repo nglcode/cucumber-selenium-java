@@ -2,7 +2,7 @@
 Feature: Search and add products to cart
   This is just a description
 
-  @tag1
+  @PlaceOrder
   Scenario Outline: Search Experience for product search in both home and offers page
     Given user is on GreenCard landing page
     When user searched with shortname <Name> and extracted actual name of product
