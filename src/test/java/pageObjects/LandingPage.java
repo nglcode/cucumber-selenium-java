@@ -36,7 +36,7 @@ public class LandingPage {
 	}
 	
 	public void clickIncrementButton(int quantity) {
-		IntStream.rangeClosed(1, quantity).forEach(i -> driver.findElement(incrementButton).click());
+		IntStream.rangeClosed(0, quantity).forEach(i -> driver.findElement(incrementButton).click());
 	}
 	
 	public void clickAddToCartButton() {
