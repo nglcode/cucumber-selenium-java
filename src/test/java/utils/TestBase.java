@@ -8,6 +8,7 @@ import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TestBase {
 
@@ -17,6 +18,7 @@ public class TestBase {
 
 		FileInputStream fis = null;
 		Properties props = new Properties();
+		String browser = "";
 
 		try {
 			fis = new FileInputStream("src/test/resources/global.properties");
@@ -31,16 +33,27 @@ public class TestBase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		String url = props.getProperty("qa-url");
+		String browser_properties = props.getProperty("browser");
+		String browser_maven = System.getProperty("browser");
+		
+		browser = browser_maven != null ? browser_maven : browser_properties;
 
 		if (driver == null) {
-			if (props.getProperty("browser").equalsIgnoreCase("chrome")) {
-				System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+			if (browser.equalsIgnoreCase("chrome")) {
+				System.out.println("---CHROME---");
+				System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
 				driver = new ChromeDriver();
+			} else if (browser.equalsIgnoreCase("firefox")) {
+				System.out.println("---FIREFOX---");
+				System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckodriver.exe");
+				driver = new FirefoxDriver();
+			} else {
+				System.out.println("Specified driver is not valid");
+				return null;
 			}
-			if (props.getProperty("browser").equalsIgnoreCase("firefox")) {
-				// firefox code
-			}
-			driver.get(props.getProperty("qa-url"));
+			driver.get(url);
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		}
 		return driver;

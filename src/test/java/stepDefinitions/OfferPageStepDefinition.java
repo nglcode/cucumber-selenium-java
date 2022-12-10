@@ -32,7 +32,6 @@ public class OfferPageStepDefinition {
 		OffersPage offersPage = testContextSetup.pageObjectManager.getOffersPage();
 		offersPage.searchItem(shortname);
 		offerPageProductName = offersPage.getProductName();
-		System.out.println(offerPageProductName + " was extracted - offerPageProductName");
 		Thread.sleep(2000);
 	}
 	

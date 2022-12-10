@@ -29,7 +29,6 @@ public class LandingPageStepDefinition {
 		landingPage.searchItem(shortname);
 		Thread.sleep(2000);
 		testContextSetup.landingPageProductName = landingPage.getProductName().split("-")[0].trim();
-		System.out.println(testContextSetup.landingPageProductName + " was extracted - landingPageProductName");
 	}
 	
 	@When("^user adds (.+) items of (.+) to the cart$")
